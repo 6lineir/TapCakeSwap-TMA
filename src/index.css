@@ -4,6 +4,7 @@
 
 body {
   font-family: sans-serif;
+  color: white;
 }
 
 @keyframes float {
@@ -19,7 +20,7 @@ body {
 }
 
 .bg-gradient-main {
-  background: linear-gradient(to top, #fba007, #ffc630);
+  background: linear-gradient(to top, #03c0ce, #ffc630);
 }
 
 .bg-gradient-overlay {
