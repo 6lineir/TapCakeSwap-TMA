@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import RWheel from "../components/RWheel"
 
 
 const Earns = () => {
@@ -17,6 +18,10 @@ const Earns = () => {
                         <p className="text-lg">Go To Tap</p>
                     </div>
                 </Link>
+                <div className="mt-5">
+
+                <RWheel></RWheel>
+                </div>
             </div>
         </div>
 

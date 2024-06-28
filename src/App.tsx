@@ -2,6 +2,7 @@
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 import TapClick from './components/TapClick'
 import Boosts from "./pages/Boosts";
 import Earns from "./pages/Earns";

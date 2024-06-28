@@ -4,7 +4,7 @@ import highVoltage from "./high-voltage.png";
 import notcoin from "./notcoin.png";
 import rocket from "./rocket.png";
 import trophy from "./trophy.png";
-import axs from "./logo-axs.png"
+import tcs from "./logo-cakeswap.png"
 export {
     bear,
     coin,
@@ -12,5 +12,5 @@ export {
     notcoin,
     rocket,
     trophy,
-    axs
+    tcs
 }

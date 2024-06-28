@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { bear, coin, highVoltage, rocket, trophy, axs } from './../images';
+import { bear, coin, highVoltage, rocket, trophy, tcs } from './../images';
 import { Link } from "react-router-dom";
 
 
@@ -113,7 +113,7 @@ const TapClick = () => {
                         </div>
                     </div>
                     <div className="mt-10 flex items-center">
-                        <img src={axs} width={40} height={40} />
+                        <img src={tcs} width={40} height={40} />
                         <span className="count-point ml-2">{points.toLocaleString()}</span>
                     </div>
                     <div className="text-base mt-2 flex items-center">
@@ -166,7 +166,7 @@ const TapClick = () => {
 
                 <div className="flex-grow flex items-center justify-center">
                     <div className="relative mt-4 csscoin" onClick={handleClick}>
-                        <img src={axs} width={256} height={256} alt="coin" />
+                        <img src={tcs} width={256} height={256} alt="coin" />
                         {clicks.map((click) => (
                             <div
                                 key={click.id}

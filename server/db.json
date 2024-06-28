@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+
+            "id": 0,
+            "username": "defalut_user",
+            "last_name": "user1",
+            "is_premium": false,
+            "tap_coin": 0,
+            "tap_level": 1,
+            "energy": 100,
+            "energy_level": 1,
+            "level": "Bronze"
+        }
+    ]
+}
