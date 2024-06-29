@@ -9,19 +9,6 @@ This project is a clone of the popular Telegram mini app, Notcoin. The repositor
 1. **Initial Setup**: Provides the foundational structure and assets needed to build the full application.
 2. **Final Version**: The completed application with all functionalities.
 
-## Getting Started
-
-To get started with either the initial setup or the final version, follow these instructions:
-
-### Cloning the Repository
-
-1. **Clone the Repository**:
-
-    ```bash
-    git clone https://github.com/nikandr-surkov/Notcoin-Telegram-Mini-App-Clone.git
-    cd Notcoin-Telegram-Mini-App-Clone
-    ```
-
 ### Initial Setup
 
 2. **Switch to the `initial-setup` Branch**:
@@ -67,10 +54,4 @@ To get started with either the initial setup or the final version, follow these 
     ```
 
 5. **Open Your Browser**:
-
-    Navigate to localhost to see the final version of the application.
-
-## Contact
-
-For any inquiries, please contact me in Telegram: [Nikandr Surkov](https://t.me/nikandr_s).
 
