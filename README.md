@@ -1,10 +1,8 @@
-# Notcoin-Clone
-
-This repository contains the initial setup and the final version of the Notcoin clone project, including the basic project structure, necessary images, and icons.
+# Tap CakeSwap   (TonCakeSwap miner)
 
 ## Overview
 
-This project is a clone of the popular Telegram mini app, Notcoin. The repository provides two branches:
+This project is a clone of the popular Telegram mini app, Miner Tap. The repository provides two branches:
 
 1. **Initial Setup**: Provides the foundational structure and assets needed to build the full application.
 2. **Final Version**: The completed application with all functionalities.
