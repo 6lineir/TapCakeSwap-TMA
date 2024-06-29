@@ -1,82 +1,106 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from 'react';
 import { bear, coin, highVoltage, rocket, trophy, tcs } from './../images';
 import { Link } from "react-router-dom";
 
+import axios from 'axios';
 
-const TapClick = () => {
-    // console.log(preCoin);
-    if (localStorage.getItem('coin') === null) {
-        localStorage.setItem('coin', parseInt(0))
-        localStorage.setItem('energy', parseInt(100))
-    }
-    const preCoin = parseInt(localStorage.getItem('coin'))
-    let energy_int = parseInt(localStorage.getItem('energy'))
+const TapClick = ({ props }) => {
+    const url_userID = `http://localhost:3003/users/${props.id}`
+    const preCoin = props.tap_coin
+    const energy_int = props.energy
+    let energy_max = props.energy_max
     const [points, setPoints] = useState(preCoin);
     const [energy, setEnergy] = useState(energy_int);
     const [clicks, setClicks] = useState<{ id: number, x: number, y: number }[]>([]);
     const pointsToAdd = 1;
     const energyToReduce = 1;
     const handleLevel = (points) => {
+        // Set Call API in DB ===>
+        const UpdateDataLevel = async (level, en_max) => {
+            props.level = level
+            props.energy_max = en_max
+            await axios.put(url_userID, props)
+        }
+
         // console.warn(points);
+        let level_name = 'Bronze'
         if (points <= 500) {
-            energy_int = 100
-            return 'Bronze'
+            level_name = 'Bronze'
+            energy_max = 100
+            UpdateDataLevel(level_name, energy_max)
+            return level_name
         }
         if (points <= 1000) {
-            energy_int = 200
-            return 'Silver'
+            energy_max = 200
+            level_name = 'Silver'
+            UpdateDataLevel(level_name, energy_max)
+            return level_name
         }
         if (points <= 10000) {
-            energy_int = 300
-            return 'Gold'
+            energy_max = 300
+            level_name = 'Gold'
+            UpdateDataLevel(level_name, energy_max)
+            return level_name
         }
         if (points <= 100000) {
-            energy_int = 400
+            energy_max = 400
             return 'Platinum'
         }
         if (points <= 1000000) {
-            energy_int = 500
+            energy_max = 500
             return 'Diamond'
         }
         if (points <= 10000000) {
-            energy_int = 600
+            // energy_int = 600
             return 'Epic'
         }
         if (points <= 100000000) {
-            energy_int = 700
+            // energy_int = 700
             return 'Legendary'
         }
         if (points <= 1000000000) {
-            energy_int = 800
+            // energy_int = 800
             return 'Master'
         }
         if (points <= 10000000000) {
-            energy_int = 900
+            // energy_int = 900
             return 'GrandMaster'
         }
         if (points <= 100000000000) {
-            energy_int = 1000
+            // energy_int = 1000
             return 'Lord'
         }
 
-
     }
+
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (energy - energyToReduce < 0) {
             return;
         }
-
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
+        // console.log("== PROPS USER DATA ==", props)
+        // Set Tap Coin +
+        setPoints(points + pointsToAdd)
+        props.tap_coin = points + pointsToAdd  //* Update in DB
 
-        setPoints(points + pointsToAdd);
-        localStorage.setItem('coin', points + pointsToAdd)
         setEnergy(energy - energyToReduce < 0 ? 0 : energy - energyToReduce);
-        localStorage.setItem('energy', energy - energyToReduce < 0 ? 0 : energy - energyToReduce)
+        props.energy = energy - energyToReduce < 0 ? 0 : energy - energyToReduce //* Update in DB
         setClicks([...clicks, { id: Date.now(), x, y }]);
+
+        // Set Call API in DB ===>
+        const UpdateData = async () => {
+            await axios.put(url_userID, props).then((res) => {
+                // console.log("++ Res:", res)
+            })
+        }
+        UpdateData()
+
     };
 
     const handleAnimationEnd = (id: number) => {
@@ -85,15 +109,9 @@ const TapClick = () => {
 
     // useEffect hook to restore energy over time
     useEffect(() => {
-        const interval = setInterval(() => {
-            setEnergy((prevEnergy) => Math.min(prevEnergy + 1, energy_int));
-            localStorage.setItem('energy',energy + 1)
 
 
-        }, 1000); // Restore 10 energy points every second
-
-        return () => clearInterval(interval); // Clear interval on component unmount
-    }, [energy, energy_int]);
+    }, []);
 
     return (
         <div className="bg-gradient-main min-h-screen px-4 flex flex-col items-center text-white font-medium">
@@ -105,8 +123,10 @@ const TapClick = () => {
             <div className="w-full z-10 min-h-screen flex flex-col items-center text-white">
 
                 <div className="fixed top-0 left-0 w-full px-4 pt-8 z-10 flex flex-col items-center text-white">
+                    <h1 className='text-2xl mb-2'>* Tap CakeSwap *</h1>
                     <div className="w-full cursor-pointer">
-                        <div className="bg-[#1f1f1f] text-center py-2 rounded-xl">
+
+                        <div className="bg-[#444444] text-center py-2 rounded-xl">
                             <a href="https://t.me/test" target='_blank'>
                                 <p className="text-lg">Join Channel</p>
                             </a>
@@ -130,8 +150,8 @@ const TapClick = () => {
                             <div className="flex items-center justify-center">
                                 <img src={highVoltage} width={35} height={35} alt="High Voltage" />
                                 <div className="ml-2 text-left">
-                                    <span className="text-white text-2xl font-bold block">{energy}</span>
-                                    <span className="text-white text-large opacity-75">/ {energy_int}</span>
+                                    <span className="text-white text-2xl font-bold block">{energy_int}</span>
+                                    <span className="text-white text-large opacity-75">/ {energy_max}</span>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +179,7 @@ const TapClick = () => {
                         </div>
                     </div>
                     <div className="w-full bg-[#f9c035] rounded-full mt-4">
-                        <div className="bg-gradient-to-r from-[#f3c45a] to-[#fffad0] h-4 rounded-full" style={{ width: `${(energy / energy_int) * 100}%` }}></div>
+                        <div className="bg-gradient-to-r from-[#f3c45a] to-[#fffad0] h-4 rounded-full" style={{ width: `${(energy_int / energy_max) * 100}%` }}></div>
                     </div>
                 </div>
 
@@ -174,7 +194,7 @@ const TapClick = () => {
                                 style={{
                                     top: `${click.y - 42}px`,
                                     left: `${click.x - 28}px`,
-                                    animation: `float 1s ease-out`
+                                    animation: `float 2s ease-out`
                                 }}
                                 onAnimationEnd={() => handleAnimationEnd(click.id)}
                             >

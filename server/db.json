@@ -1,16 +1,16 @@
 {
-    "users": [
-        {
-
-            "id": 0,
-            "username": "defalut_user",
-            "last_name": "user1",
-            "is_premium": false,
-            "tap_coin": 0,
-            "tap_level": 1,
-            "energy": 100,
-            "energy_level": 1,
-            "level": "Bronze"
-        }
-    ]
+  "users": [
+    {
+      "id": "13",
+      "username": "test",
+      "last_name": "test",
+      "is_premium": false,
+      "tap_coin": 672,
+      "tap_level": 1,
+      "energy": 153,
+      "energy_max": 200,
+      "energy_level": 1,
+      "level": "Silver"
+    }
+  ]
 }
